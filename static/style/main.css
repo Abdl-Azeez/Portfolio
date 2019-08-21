@@ -1071,6 +1071,12 @@ footer{
         font-size: 27px;
         letter-spacing: 1px;
     }
+    .roadmap__navigation > :first-child {
+      left: -5px;
+    }
+    .roadmap__navigation > :last-child {
+      right: -5px;
+    }
     .s2 .row a {
         padding: 10px 30px 11px 25px;
         font-size: 13px;
@@ -1181,12 +1187,7 @@ footer{
     .roadmap__events__event .event .event__content small {
         font-size: 10px;
     }
-    .roadmap__navigation > :first-child {
-      left: -5px;
-    }
-    .roadmap__navigation > :last-child {
-      right: -5px;
-    }
+    
     .s4 .sec_div {
         padding: 40px 0 150px;
     }
