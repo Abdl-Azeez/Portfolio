@@ -1181,6 +1181,12 @@ footer{
     .roadmap__events__event .event .event__content small {
         font-size: 10px;
     }
+    .roadmap__navigation > :first-child {
+      left: -5px;
+    }
+    .roadmap__navigation > :last-child {
+      right: -5px;
+    }
     .s4 .sec_div {
         padding: 40px 0 150px;
     }
