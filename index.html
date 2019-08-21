@@ -410,8 +410,10 @@ $("#my-form").submit(function(e) {
 
   var $form = $(this);
   $.post($form.attr("action"), $form.serialize()).then(function() {
-    alert("Sent Successfully! \nThank you, We will contact you shortly!");
+	alert("Sent Successfully! \nThank you, We will contact you shortly!");
+	window.location.reload();
   });
+  return false;
 });
 </script>
 </html>
