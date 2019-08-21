@@ -1072,10 +1072,10 @@ footer{
         letter-spacing: 1px;
     }
     .roadmap__navigation > :first-child {
-      left: -5px;
+      left: -25px;
     }
     .roadmap__navigation > :last-child {
-      right: -5px;
+      right: -25px;
     }
     .s2 .row a {
         padding: 10px 30px 11px 25px;
@@ -1149,6 +1149,12 @@ footer{
     .heading:after {
         width: 19%;
         left: 39%;
+    }
+    .roadmap__navigation > :first-child {
+      left: -10px;
+    }
+    .roadmap__navigation > :last-child {
+      right: -10px;
     }
     .s2 .sec_div {
         padding: 70px 40px;
