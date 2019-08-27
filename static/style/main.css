@@ -171,23 +171,18 @@ ul .li-class a:before {
 ul .li-class a:hover:before {
   width: 100%;
 }
-/*#line{
-  height: 2px;
-  width: 100px;
-  margin-left: 223px;
-  background: none;
-  transition: all .3s linear;
-}*/
+
 .wrapper{
     margin: 0 30px;
     transition: 0.4s all ease;
 }
 
 
+
 path{
   stroke:var(--default-color);
   fill:var(--default-color);
-  stroke-dasharray: 1800;
+  stroke-dasharray: 1360;
   opacity: 10;
   animation: animate cubic-bezier(0, 0.23,1,0.1);
   -webkit-animation-delay: 1s;
@@ -195,15 +190,18 @@ path{
   -webkit-animation-duration: 5s;
   -moz-animation-duration: 5s;
   animation-duration: 5s;
-  /*animation-iteration-count: infinite;*/
+  /*animation-iteration-count: 1;*/
   animation-delay: 1s;
 }
 
 @keyframes animate{
   0%{
+		stroke: #be9c80;
+    stroke-width: 2px;
     opacity: 0;
     fill: none;
     stroke-dashoffset:1800;
+		stroke-dasharray: 0;
   }
   30%{
     opacity: 10;
@@ -213,16 +211,18 @@ path{
 
 
   90%{
-    fill:#451e1d;
+    fill:#451e1fbd;
     /*stroke: #6eaade8a;*/
   }
   100%{
     opacity: 10;
-    fill: var(--body-bg-color);
+    fill: #451e1f;
     stroke-dashoffset:0;
+		stroke-dasharray: 1360;
+		outline: none;
+		stroke: none;
   }
 }
-
 .bannerText
 {
   position: absolute;
