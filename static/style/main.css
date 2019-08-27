@@ -212,6 +212,7 @@ path{
 
   90%{
     fill:#451e1fbd;
+    stroke-dasharray: 1500;
     /*stroke: #6eaade8a;*/
   }
   100%{
