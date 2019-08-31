@@ -29,18 +29,17 @@
 // 		}
 // 	});
 
-$(document).ready(function(){
-  $("a").on('click', function(event) {
-    if (this.hash !== "") {
-      event.preventDefault();
+$(document).ready(function () {
+  $("a").on('click', function (event) {
 
-      var hash = this.hash;
-      $('html, body').animate({
-        scrollTop: $(hash).offset().top
-      }, 800, function(){
-        window.location.hash = hash;
-      });
-    }
+      if (this.hash !== "") {
+          event.preventDefault();
+
+          const elem = this; // save it so we can use it in the animate
+          $('html, body').animate({
+              scrollTop: $($(elem).attr('href')).offset().top
+          }, 1000);
+      }
   });
 });
 
