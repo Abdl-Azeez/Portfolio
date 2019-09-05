@@ -36,7 +36,7 @@ body {
       75% 84%,
       from(#be9c80),
       to(#451e1f),
-      color-stop(.6,#7a5b5c))
+      color-stop(.6, #7a5b5c))
 }
 
 a:hover {
@@ -500,7 +500,7 @@ path {
 }
 
 .banner:hover {
-	opacity: 0.94;
+  opacity: 0.94;
 }
 
 
@@ -965,10 +965,6 @@ footer {
 }
 
 .social-media ul li:nth-child(1) a:before {
-  background: #365397;
-}
-
-.social-media ul li:nth-child(2) a:before {
   background: linear-gradient(rgb(64, 93, 230),
       rgb(88, 81, 219),
       rgb(131, 58, 180),
@@ -977,8 +973,12 @@ footer {
       rgb(247, 119, 55));
 }
 
-.social-media ul li:nth-child(3) a:before {
+.social-media ul li:nth-child(2) a:before {
   background: #0077B5;
+}
+
+.social-media ul li:nth-child(3) a:before {
+  background: #f48024;
 }
 
 .social-media ul li:nth-child(4) a:before {
