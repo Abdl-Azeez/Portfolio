@@ -396,7 +396,6 @@ path {
 }
 
 .btn:before {
-  speak: none;
   font-style: normal;
   font-weight: normal;
   font-variant: normal;
@@ -867,7 +866,6 @@ textarea {
   letter-spacing: 1px;
   display: inline-block;
   border-radius: 35px;
-  float: right;
   transition: 0.5s all;
   -webkit-transition: 0.5s all;
   -moz-transition: 0.5s all;
