@@ -1361,6 +1361,9 @@ footer {
   .s4 .sec_div {
     padding: 40px 0 150px;
   }
+  .s5 .container{
+    padding-top: 0px;
+  }
   .s5 .row{
     padding: 0px;
   }
