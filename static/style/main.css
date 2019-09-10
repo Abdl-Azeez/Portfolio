@@ -705,6 +705,12 @@ path {
   /* z-index: -0.5; */
 }
 
+.s5 .container{
+  padding-top: 30px;
+}
+.s5 .row{
+  padding: 40px 0;
+}
 .project-gallery {
   margin-top: 1em;
 }
@@ -1355,7 +1361,9 @@ footer {
   .s4 .sec_div {
     padding: 40px 0 150px;
   }
-
+  .s5 .row{
+    padding: 0px;
+  }
   .overlay {
     opacity: 1 !important;
     font-size: 15px;
