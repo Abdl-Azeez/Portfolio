@@ -864,7 +864,8 @@ textarea {
   font-weight: 600;
   font-size: 15px;
   letter-spacing: 1px;
-  display: inline-block;
+  /* display: inline-block; */
+  float: right;
   border-radius: 35px;
   transition: 0.5s all;
   -webkit-transition: 0.5s all;
