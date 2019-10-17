@@ -904,8 +904,10 @@ footer {
   letter-spacing: 1px;
   line-height: 28px;
 }
-
-.social-media ul {
+.social-med{
+  display: block !important;
+}
+.social-med ul {
   /* display: flex;
 	position: relative;
 	top: 50%;
@@ -915,12 +917,12 @@ footer {
   padding: 0;
 }
 
-.social-media ul li {
+.social-med ul li {
   list-style: none;
   display: inline-block;
 }
 
-.social-media ul li a {
+.social-med ul li a {
   width: 50px;
   height: 50px;
   background: var(--content-color);
@@ -940,7 +942,7 @@ footer {
   margin-top: 10%;
 }
 
-.social-media ul li a .fa {
+.social-med ul li a .fa {
   position: relative;
   color: var(--body-bg-color);
   font-size: 30px;
@@ -948,13 +950,13 @@ footer {
   transition: .5s;
 }
 
-.social-media ul li a:hover .fa {
+.social-med ul li a:hover .fa {
   color: var(--plain-color);
   transform: rotateY(360deg);
   z-index: 3;
 }
 
-.social-media ul li a:before {
+.social-med ul li a:before {
   content: "";
   position: absolute;
   top: 100%;
@@ -966,11 +968,11 @@ footer {
   z-index: 2;
 }
 
-.social-media ul li a:hover:before {
+.social-med ul li a:hover:before {
   top: 0;
 }
 
-.social-media ul li:nth-child(1) a:before {
+.social-med ul li:nth-child(1) a:before {
   background: linear-gradient(rgb(64, 93, 230),
       rgb(88, 81, 219),
       rgb(131, 58, 180),
@@ -979,15 +981,15 @@ footer {
       rgb(247, 119, 55));
 }
 
-.social-media ul li:nth-child(2) a:before {
+.social-med ul li:nth-child(2) a:before {
   background: #0077B5;
 }
 
-.social-media ul li:nth-child(3) a:before {
+.social-med ul li:nth-child(3) a:before {
   background: #f48024;
 }
 
-.social-media ul li:nth-child(4) a:before {
+.social-med ul li:nth-child(4) a:before {
   background: #2f2f2f;
 }
 
@@ -1138,12 +1140,12 @@ footer {
     margin-right: 25px;
   }
 
-  .social-media ul li a {
+  .social-med ul li a {
     width: 45px;
     height: 45px;
   }
 
-  .social-media ul li a .fa {
+  .social-med ul li a .fa {
     top: -8.5px !important;
   }
 }
@@ -1483,12 +1485,12 @@ footer {
     padding: 12px 0 !important;
   }
 
-  .social-media ul li a {
+  .social-med ul li a {
     width: 38px;
     height: 38px;
   }
 
-  .social-media ul li a .fa {
+  .social-med ul li a .fa {
     font-size: 22px;
     top: -15.5px !important;
   }
