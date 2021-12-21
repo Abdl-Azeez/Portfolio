@@ -1,4 +1,4 @@
-;(function (factory) {
+(function (factory) {
 	"use strict";
 
 	if (typeof define === 'function' && define.amd) {
@@ -8,7 +8,9 @@
 	} else {
 		factory(jQuery);
 	}
-})(function ($, window, document, undefined) {
+})
+
+(function ($, window, document) {
 
 	"use strict";
 
@@ -178,3 +180,60 @@
 		});
 	};
 });
+
+$(document).ready(function () {
+			var events = [{
+					date: 'September 2020 - Present',
+					content: 'Bachelor\'s Degree <small>Information Technology in IoT</small>'
+				},{
+					date: 'November 2019 - March 2021',
+					content: 'Ciraxes Consultancy & Services <small>Junior Software Developer (Contract)</small>'
+				},
+				{
+					date: 'August 2019 - October 2019',
+					content: 'Capital DK Consulting Sdn Bhd <small>Junior Software Developer</small>'
+				},
+				{
+					date: 'April - July 2019',
+					content: 'Kidocode Sdn Bhd<small>Internship, IT trainer</small>'
+				},
+
+				{
+					date: '2017 - 2019',
+					content: 'Diploma Course  <small>Computer Science</small>'
+				},
+
+				{
+					date: '2015 - 2016',
+					content: 'Desktop Publishing  <small>Computer Skill</small>'
+				},
+
+				{
+					date: 'May - June 2014',
+					content: 'WAEC Examination <small>O-Level obtained</small>'
+				},
+
+				{
+					date: 'June - July 2012',
+					content: 'NECO Examination  <small>National Examination</small>'
+				},
+
+				{
+					date: '2008 - 2013',
+					content: 'Oasis Model College  <small>High School</small>'
+				},
+
+				{
+					date: '2002 - 2008',
+					content: 'Justday International School  <small>Elementary School</small>'
+				}
+			];
+
+			$('#my-timeline').roadmap(events, {
+				eventsPerSlide: 6,
+				slide: 1,
+				prevArrow: '<i class="fa fa-chevron-left" aria-hidden="true"></i>',
+				nextArrow: '<i class="fa fa-chevron-right" aria-hidden="true"></i>'
+			});
+});
+	
