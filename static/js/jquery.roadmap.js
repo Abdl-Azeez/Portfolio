@@ -1,239 +1,283 @@
 (function (factory) {
-	"use strict";
+  'use strict';
 
-	if (typeof define === 'function' && define.amd) {
-		define(['jquery'], factory);
-	} else if (typeof exports !== 'undefined') {
-		module.exports = factory(require('jquery'));
-	} else {
-		factory(jQuery);
-	}
-})
+  if (typeof define === 'function' && define.amd) {
+    define(['jquery'], factory);
+  } else if (typeof exports !== 'undefined') {
+    module.exports = factory(require('jquery'));
+  } else {
+    factory(jQuery);
+  }
+})(function ($, window, document) {
+  'use strict';
 
-(function ($, window, document) {
+  // undefined is used here as the undefined global variable in ECMAScript 3 is
+  // mutable (ie. it can be changed by someone else). undefined isn't really being
+  // passed in so we can ensure the value of it is truly undefined. In ES5, undefined
+  // can no longer be modified.
 
-	"use strict";
+  // window and document are passed through as local variables rather than global
+  // as this (slightly) quickens the resolution process and can be more efficiently
+  // minified (especially when both are regularly referenced in your plugin).
 
-	// undefined is used here as the undefined global variable in ECMAScript 3 is
-	// mutable (ie. it can be changed by someone else). undefined isn't really being
-	// passed in so we can ensure the value of it is truly undefined. In ES5, undefined
-	// can no longer be modified.
+  /**
+   * jQuery custom plugin implement the roadmap functionality
+   */
 
-	// window and document are passed through as local variables rather than global
-	// as this (slightly) quickens the resolution process and can be more efficiently
-	// minified (especially when both are regularly referenced in your plugin).
+  $.fn.roadmap = function (events, opts) {
+    if (!events instanceof Array) {
+      events = [];
+    }
 
-	/**
-  * jQuery custom plugin implement the roadmap functionality
-  */
+    var defaults = {
+      slide: 1,
+      eventsPerSlide: 6,
+      rootClass: 'roadmap',
+      prevArrow: 'prev',
+      nextArrow: 'next',
+      eventTemplate:
+        '<div class="event">' +
+        '<div class="event__date">####DATE###</div>' +
+        '<div class="event__content">####CONTENT###</div>' +
+        '</div>',
+    };
 
-	$.fn.roadmap = function (events, opts) {
-		if (!events instanceof Array) {
-			events = [];
-		}
+    var settings = $.extend({}, defaults, opts);
 
-		var defaults = {
-			slide: 1,
-			eventsPerSlide: 6,
-			rootClass: 'roadmap',
-			prevArrow: 'prev',
-			nextArrow: 'next',
-			eventTemplate: '<div class="event">' + '<div class="event__date">####DATE###</div>' + '<div class="event__content">####CONTENT###</div>' + '</div>'
-		};
+    var buildEvent = function (event, key) {
+      var html =
+        '<li class="' +
+        settings.rootClass +
+        '__events__event">' +
+        settings.eventTemplate +
+        '</li>';
+      html = html.replace('####DATE###', event.date);
+      html = html.replace('####CONTENT###', event.content);
 
-		var settings = $.extend({}, defaults, opts);
+      var left = (100 / (settings.eventsPerSlide - 1)) * key;
 
-		var buildEvent = function (event, key) {
-			var html = '<li class="' + settings.rootClass + '__events__event">' + settings.eventTemplate + '</li>';
-			html = html.replace('####DATE###', event.date);
-			html = html.replace('####CONTENT###', event.content);
+      return $(html).css('left', left + '%');
+    };
 
-			var left = 100 / (settings.eventsPerSlide - 1) * key;
+    return this.each(function () {
+      var _this = this;
+      var $this = $(this);
+      var currentSlide = settings.slide - 1;
 
-			return $(html).css('left', left + '%');
-		};
+      /**
+       * Store events and settings
+       */
+      $this
+        .data({
+          events: events,
+          settings: settings,
+          currentSlide: currentSlide,
+        })
+        .addClass(settings.rootClass);
 
-		return this.each(function () {
-			var _this = this;
-			var $this = $(this);
-			var currentSlide = settings.slide - 1;
+      var clear = function () {
+        $this.removeClass(settings.rootClass + '--initialized');
 
-			/**
-    * Store events and settings
-    */
-			$this.data({
-				events: events,
-				settings: settings,
-				currentSlide: currentSlide
-			}).addClass(settings.rootClass);
+        $this.find('.' + settings.rootClass + '__events').remove();
+        $this.find('.' + settings.rootClass + '__navigation').remove();
+      };
 
-			var clear = function () {
-				$this.removeClass(settings.rootClass + '--initialized');
+      var buildEvents = function () {
+        var currentSlide = $this.data('currentSlide');
+        var settings = $this.data('settings');
+        var events = $this.data('events');
 
-				$this.find('.' + settings.rootClass + '__events').remove();
-				$this.find('.' + settings.rootClass + '__navigation').remove();
-			};
+        $('<ol/>', { class: settings.rootClass + '__events' })
+          .append(
+            events
+              .slice(
+                currentSlide * settings.eventsPerSlide,
+                (currentSlide + 1) * settings.eventsPerSlide
+              )
+              .map(buildEvent)
+          )
+          .appendTo(_this);
+      };
 
-			var buildEvents = function () {
-				var currentSlide = $this.data('currentSlide');
-				var settings = $this.data('settings');
-				var events = $this.data('events');
+      var buildNavigation = function () {
+        var currentSlide = $this.data('currentSlide');
 
-				$('<ol/>', { class: settings.rootClass + '__events' }).append(events.slice(currentSlide * settings.eventsPerSlide, (currentSlide + 1) * settings.eventsPerSlide).map(buildEvent)).appendTo(_this);
-			};
+        var buildNav = function (nav) {
+          switch (nav) {
+            case 'prev':
+              if (currentSlide > 0) {
+                return $(
+                  '<li><a href="#" class="' +
+                    nav +
+                    '">' +
+                    settings.prevArrow +
+                    '</a></li>'
+                );
+              }
+              break;
 
-			var buildNavigation = function () {
-				var currentSlide = $this.data('currentSlide');
+            case 'next':
+              if (
+                (currentSlide + 1) * settings.eventsPerSlide <
+                events.length
+              ) {
+                return $(
+                  '<li><a href="#" class="' +
+                    nav +
+                    '">' +
+                    settings.nextArrow +
+                    '</a></li>'
+                );
+              }
+              break;
+          }
 
-				var buildNav = function (nav) {
-					switch (nav) {
-						case 'prev':
-							if (currentSlide > 0) {
-								return $('<li><a href="#" class="' + nav + '">' + settings.prevArrow + '</a></li>');
-							}
-							break;
+          return $('<li></li>');
+        };
 
-						case 'next':
-							if ((currentSlide + 1) * settings.eventsPerSlide < events.length) {
-								return $('<li><a href="#" class="' + nav + '">' + settings.nextArrow + '</a></li>');
-							}
-							break;
-					}
+        $('<ul/>', { class: settings.rootClass + '__navigation' })
+          .append(['prev', 'next'].map(buildNav))
+          .appendTo(_this);
+      };
 
-					return $('<li></li>');
-				};
+      var build = function () {
+        clear();
 
-				$('<ul/>', { class: settings.rootClass + '__navigation' }).append(['prev', 'next'].map(buildNav)).appendTo(_this);
-			};
+        /**
+         * Init events
+         */
+        buildEvents();
 
-			var build = function () {
+        /**
+         * Init navigation
+         */
+        buildNavigation();
 
-				clear();
+        /**
+         * Initialize
+         */
+        setTimeout(function () {
+          $this.addClass(settings.rootClass + '--initialized');
+        }, 100);
+      };
 
-				/**
-     * Init events
-     */
-				buildEvents();
+      /**
+       * Build roadmap
+       */
+      build();
 
-				/**
-     * Init navigation
-     */
-				buildNavigation();
+      /**
+       * Event Listeners
+       */
+      $('body').on(
+        'click',
+        '.' +
+          settings.rootClass +
+          ' .' +
+          settings.rootClass +
+          '__navigation li > *',
+        function (e) {
+          e.preventDefault();
 
-				/**
-     * Initialize
-     */
-				setTimeout(function () {
-					$this.addClass(settings.rootClass + '--initialized');
-				}, 100);
-			};
+          /**
+           * Handle prev click
+           */
+          if ($(this).hasClass('prev')) {
+            var currentSlide = $this.data('currentSlide');
+            if (currentSlide < 1) {
+              return false;
+            }
 
-			/**
-    * Build roadmap
-    */
-			build();
+            $this.data({
+              events: events,
+              settings: settings,
+              currentSlide: currentSlide - 1,
+            });
 
-			/**
-    * Event Listeners
-    */
-			$('body').on('click', '.' + settings.rootClass + ' .' + settings.rootClass + '__navigation li > *', function (e) {
-				e.preventDefault();
+            build();
+          } else {
+            /**
+             * Handle next click
+             */
+            var currentSlide = $this.data('currentSlide');
+            if ((currentSlide + 1) * settings.eventsPerSlide >= events.length) {
+              return false;
+            }
 
-				/**
-     * Handle prev click
-     */
-				if ($(this).hasClass('prev')) {
+            $this.data({
+              events: events,
+              settings: settings,
+              currentSlide: currentSlide + 1,
+            });
 
-					var currentSlide = $this.data('currentSlide');
-					if (currentSlide < 1) {
-						return false;
-					}
-
-					$this.data({
-						events: events,
-						settings: settings,
-						currentSlide: currentSlide - 1
-					});
-
-					build();
-				}
-
-				/**
-     * Handle next click
-     */
-				else {
-
-						var currentSlide = $this.data('currentSlide');
-						if ((currentSlide + 1) * settings.eventsPerSlide >= events.length) {
-							return false;
-						}
-
-						$this.data({
-							events: events,
-							settings: settings,
-							currentSlide: currentSlide + 1
-						});
-
-						build();
-					}
-			});
-		});
-	};
+            build();
+          }
+        }
+      );
+    });
+  };
 });
 
 $(document).ready(function () {
-			var events = [{
-					date: 'September 2020 - Present',
-					content: 'Bachelor\'s Degree <small>Information Technology in IoT</small>'
-				},{
-					date: 'November 2019 - March 2021',
-					content: 'Ciraxes Consultancy & Services <small>Junior Software Developer (Contract)</small>'
-				},
-				{
-					date: 'August 2019 - October 2019',
-					content: 'Capital DK Consulting Sdn Bhd <small>Junior Software Developer</small>'
-				},
-				{
-					date: 'April - July 2019',
-					content: 'Kidocode Sdn Bhd<small>Internship, IT trainer</small>'
-				},
+  var events = [
+    {
+      date: 'April 2022 - Present',
+      content: 'NRYDE E-HAILING <small>FRONTEND DEVELOPER (Remote)</small>',
+    },
+    {
+      date: 'September 2020 - Present',
+      content: "Bachelor's Degree <small>Information Technology in IoT</small>",
+    },
+    {
+      date: 'November 2019 - March 2021',
+      content:
+        'Ciraxes Consultancy & Services <small>Junior Software Developer (Contract)</small>',
+    },
+    {
+      date: 'August 2019 - October 2019',
+      content:
+        'Capital DK Consulting Sdn Bhd <small>Junior Software Developer</small>',
+    },
+    {
+      date: 'April - July 2019',
+      content: 'Kidocode Sdn Bhd<small>Internship, IT trainer</small>',
+    },
 
-				{
-					date: '2017 - 2019',
-					content: 'Diploma Course  <small>Computer Science</small>'
-				},
+    {
+      date: '2017 - 2019',
+      content: 'Diploma Course  <small>Computer Science</small>',
+    },
 
-				{
-					date: '2015 - 2016',
-					content: 'Desktop Publishing  <small>Computer Skill</small>'
-				},
+    {
+      date: '2015 - 2016',
+      content: 'Desktop Publishing  <small>Computer Skill</small>',
+    },
 
-				{
-					date: 'May - June 2014',
-					content: 'WAEC Examination <small>O-Level obtained</small>'
-				},
+    {
+      date: 'May - June 2014',
+      content: 'WAEC Examination <small>O-Level obtained</small>',
+    },
 
-				{
-					date: 'June - July 2012',
-					content: 'NECO Examination  <small>National Examination</small>'
-				},
+    {
+      date: 'June - July 2012',
+      content: 'NECO Examination  <small>National Examination</small>',
+    },
 
-				{
-					date: '2008 - 2013',
-					content: 'Oasis Model College  <small>High School</small>'
-				},
+    {
+      date: '2008 - 2013',
+      content: 'Oasis Model College  <small>High School</small>',
+    },
 
-				{
-					date: '2002 - 2008',
-					content: 'Justday International School  <small>Elementary School</small>'
-				}
-			];
+    {
+      date: '2002 - 2008',
+      content: 'Justday International School  <small>Elementary School</small>',
+    },
+  ];
 
-			$('#my-timeline').roadmap(events, {
-				eventsPerSlide: 6,
-				slide: 1,
-				prevArrow: '<i class="fa fa-chevron-left" aria-hidden="true"></i>',
-				nextArrow: '<i class="fa fa-chevron-right" aria-hidden="true"></i>'
-			});
+  $('#my-timeline').roadmap(events, {
+    eventsPerSlide: 6,
+    slide: 1,
+    prevArrow: '<i class="fa fa-chevron-left" aria-hidden="true"></i>',
+    nextArrow: '<i class="fa fa-chevron-right" aria-hidden="true"></i>',
+  });
 });
-	
