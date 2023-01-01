@@ -31,7 +31,7 @@
 
     var defaults = {
       slide: 1,
-      eventsPerSlide: 8,
+      eventsPerSlide: 6,
       rootClass: 'roadmap',
       prevArrow: 'prev',
       nextArrow: 'next',
@@ -275,7 +275,7 @@ $(document).ready(function () {
   ];
 
   $('#my-timeline').roadmap(events, {
-    eventsPerSlide: 8,
+    eventsPerSlide: 6,
     slide: 1,
     prevArrow: '<i class="fa fa-chevron-left" aria-hidden="true"></i>',
     nextArrow: '<i class="fa fa-chevron-right" aria-hidden="true"></i>',
