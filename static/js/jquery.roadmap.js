@@ -31,7 +31,7 @@
 
     var defaults = {
       slide: 1,
-      eventsPerSlide: 6,
+      eventsPerSlide: 8,
       rootClass: 'roadmap',
       prevArrow: 'prev',
       nextArrow: 'next',
