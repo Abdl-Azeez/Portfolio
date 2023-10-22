@@ -108,10 +108,10 @@
               if (currentSlide > 0) {
                 return $(
                   '<li><a href="#" class="' +
-                    nav +
-                    '">' +
-                    settings.prevArrow +
-                    '</a></li>'
+                  nav +
+                  '">' +
+                  settings.prevArrow +
+                  '</a></li>'
                 );
               }
               break;
@@ -123,10 +123,10 @@
               ) {
                 return $(
                   '<li><a href="#" class="' +
-                    nav +
-                    '">' +
-                    settings.nextArrow +
-                    '</a></li>'
+                  nav +
+                  '">' +
+                  settings.nextArrow +
+                  '</a></li>'
                 );
               }
               break;
@@ -172,10 +172,10 @@
       $('body').on(
         'click',
         '.' +
-          settings.rootClass +
-          ' .' +
-          settings.rootClass +
-          '__navigation li > *',
+        settings.rootClass +
+        ' .' +
+        settings.rootClass +
+        '__navigation li > *',
         function (e) {
           e.preventDefault();
 
@@ -225,7 +225,7 @@ $(document).ready(function () {
       content: 'NRYDE E-HAILING <small>FRONTEND DEVELOPER (Remote)</small>',
     },
     {
-      date: 'September 2020 - Present',
+      date: 'September 2020 - January 2024',
       content: "Bachelor's Degree <small>Information Technology in IoT</small>",
     },
     {
