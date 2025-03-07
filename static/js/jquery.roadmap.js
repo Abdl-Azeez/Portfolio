@@ -221,56 +221,64 @@
 $(document).ready(function () {
   var events = [
     {
-      date: 'April 2022 - Present',
-      content: 'NRYDE E-HAILING <small>FRONTEND DEVELOPER (Remote)</small>',
+      date: "February 2025 - Present",
+      content: "ETIQA INSURANCE & TAKAFUL <small>FRONTEND DEVELOPER</small>",
     },
     {
-      date: 'September 2020 - January 2024',
+      date: "March 2024 - January 2025",
+      content: "USERDATA SDN BHD <small>FRONTEND DEVELOPER</small>",
+    },
+    {
+      date: "April 2022 - November 2023",
+      content: "NRYDE E-HAILING <small>FRONTEND DEVELOPER (Remote)</small>",
+    },
+    {
+      date: "September 2020 - January 2024",
       content: "Bachelor's Degree <small>Information Technology in IoT</small>",
     },
     {
-      date: 'November 2019 - March 2021',
+      date: "November 2019 - March 2021",
       content:
-        'Ciraxes Consultancy & Services <small>Junior Software Developer (Contract)</small>',
+        "Ciraxes Consultancy & Services <small>Junior Software Developer (Contract)</small>",
     },
     {
-      date: 'August 2019 - October 2019',
+      date: "August 2019 - October 2019",
       content:
-        'Capital DK Consulting Sdn Bhd <small>Junior Software Developer</small>',
+        "Capital DK Consulting Sdn Bhd <small>Junior Software Developer</small>",
     },
     {
-      date: 'April - July 2019',
-      content: 'Kidocode Sdn Bhd<small>Internship, IT trainer</small>',
-    },
-
-    {
-      date: '2017 - 2019',
-      content: 'Diploma Course  <small>Computer Science</small>',
+      date: "April - July 2019",
+      content: "Kidocode Sdn Bhd<small>Internship, IT trainer</small>",
     },
 
     {
-      date: '2015 - 2016',
-      content: 'Desktop Publishing  <small>Computer Skill</small>',
+      date: "2017 - 2019",
+      content: "Diploma Course  <small>Computer Science</small>",
     },
 
     {
-      date: 'May - June 2014',
-      content: 'WAEC Examination <small>O-Level obtained</small>',
+      date: "2015 - 2016",
+      content: "Desktop Publishing  <small>Computer Skill</small>",
     },
 
     {
-      date: 'June - July 2012',
-      content: 'NECO Examination  <small>National Examination</small>',
+      date: "May - June 2014",
+      content: "WAEC Examination <small>O-Level obtained</small>",
     },
 
     {
-      date: '2008 - 2013',
-      content: 'Oasis Model College  <small>High School</small>',
+      date: "June - July 2012",
+      content: "NECO Examination  <small>National Examination</small>",
     },
 
     {
-      date: '2002 - 2008',
-      content: 'Justday International School  <small>Elementary School</small>',
+      date: "2008 - 2013",
+      content: "Oasis Model College  <small>High School</small>",
+    },
+
+    {
+      date: "2002 - 2008",
+      content: "Justday International School  <small>Elementary School</small>",
     },
   ];
 
